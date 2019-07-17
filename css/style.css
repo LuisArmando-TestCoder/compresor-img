@@ -123,8 +123,8 @@ body {
   display: none;
 }
 
-[hide=true] + [for=upload] {
-  margin-top: 250px;
+[hide=true] + .conf {
+  margin-top: 150px;
 }
 
 [for=upload] {

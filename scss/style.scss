@@ -100,7 +100,7 @@ body {
 .conf {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    
+
     input {
         width: 100%;
         max-width: 400px;
@@ -130,8 +130,8 @@ body {
     display: none;
 }
 
-[hide="true"]+[for="upload"] {
-    margin-top: 250px;
+[hide="true"]+.conf {
+    margin-top: 150px;
 }
 
 [for="upload"] {
