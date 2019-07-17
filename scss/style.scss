@@ -99,33 +99,31 @@ body {
 
 .conf {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-}
+    grid-template-columns: 1fr 1fr 1fr;
+    
+    input {
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        border: 3px solid #fff;
+        border-color: #0000 #0000 #fff;
+        color: #fff;
+        display: block;
+        background: #0000;
+    }
 
-#percentage,
-#quality {
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    margin: 10px auto;
-    padding: 5px;
-    font-size: 20px;
-    font-weight: bold;
-    border: 3px solid #fff;
-    border-color: #0000 #0000 #fff;
-    color: #fff;
-    display: block;
-    background: #0000;
-}
-
-[for="percentage"],
-[for="quality"] {
-    color: #fff;
-    padding: 35px;
-    font-family: sans-serif;
-    max-width: 420px;
-    text-align: center;
-    margin: auto;
+    label {
+        color: #fff;
+        padding: 35px;
+        font-family: sans-serif;
+        max-width: 420px;
+        text-align: center;
+        margin: auto;
+    }
 }
 
 #upload {

@@ -94,11 +94,9 @@ body {
 
 .conf {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
-
-#percentage,
-#quality {
+.conf input {
   width: 100%;
   max-width: 400px;
   text-align: center;
@@ -112,9 +110,7 @@ body {
   display: block;
   background: #0000;
 }
-
-[for=percentage],
-[for=quality] {
+.conf label {
   color: #fff;
   padding: 35px;
   font-family: sans-serif;

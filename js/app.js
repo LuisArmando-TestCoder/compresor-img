@@ -94,7 +94,7 @@ function insert(names, blobs) {
 
 function saveZip(names, blobs) {
   insert(names, blobs).onZip()
-  .then(blob => saveAs(blob, 'compressed-images.zip'));
+  .then(blob => saveAs(blob, `${zipName.value}.zip`));
 }
 
 const images = document.getElementById('images');
@@ -102,6 +102,7 @@ const download = document.getElementById('download');
 const upload = document.getElementById('upload');
 const percentage = document.getElementById('percentage');
 const quality = document.getElementById('quality');
+const zipName = document.getElementById('zipName');
 let currentPercentage = percentage.value;
 let currentQuality = quality.value;
 let isNewPercentage;
@@ -110,7 +111,7 @@ let zip;
 
 upload.addEventListener('input', e => {
   images.innerHTML = '';
-  document.querySelector('[for="upload"] span').innerText = 'otras';
+  document.querySelector('[for="upload"] span').innerText = 'nuevas';
   all().show();
   prepareDownload([...e.target.files]);
 });

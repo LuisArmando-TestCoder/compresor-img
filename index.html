@@ -19,17 +19,21 @@
             Porcentaje en dimensiones de imagen a reducir
             <input value="50" id="percentage" min="1" max="100" type="number" />
         </label>
+        <label for="zipName">
+            Nombre del archivo comprimido con imágenes
+            <input value="compressed" id="zipName" type="text" />
+        </label>
         <label for="quality">
             Porcentaje en calidad a reducir
             <input value="70" id="quality" min="1" max="100" type="number" />
         </label>
     </div>
     <a hide="true" id="download" hide=" hide " onClick=" prepareDownload " download>
-        Descargar imágenes
+        Descargar imágenes comprimidas
     </a>
     <label for="upload">
         Subir <span></span> imágenes
-        <input id="upload" type="file" multiple accept=".jpg,.jpeg,.jp2,.png,.svg,.webp">
+        <input id="upload" type="file" multiple accept=".jpg,.jpeg,.jp2,.png,.svg,.webp,.vga">
     </label>
     
     <i class="author">
