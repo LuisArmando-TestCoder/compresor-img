@@ -20,7 +20,7 @@ function setImageSize(e, fileName) {
   c.width = img.width * reSize;
   c.height = img.height * reSize;
   ctx.drawImage(img, 0, 0, c.width, c.height);
-  c.toBlob(image => downloadImage(image, fileName), 'image/jpeg', 1);
+  c.toBlob(image => downloadImage(image, fileName), 'image/jpeg', 1 * quality.value / 100);
 }
 
 function downloadImage(image, fileName) {
@@ -48,7 +48,7 @@ function fillAnchor({
   name.innerText = fileName.split('-').join(' ');
   a.appendChild(preview);
   a.appendChild(name);
-  if(anchors.length === [...upload.files].length && isNewPercentage) {
+  if(anchors.length === [...upload.files].length && (isNewPercentage || isNewQuality)) {
     const names = anchors.map(a => a.querySelector('i').innerText);
     const blobs = anchors.map(a => a.href);
     saveZip(names, blobs);
@@ -101,8 +101,11 @@ const images = document.getElementById('images');
 const download = document.getElementById('download');
 const upload = document.getElementById('upload');
 const percentage = document.getElementById('percentage');
+const quality = document.getElementById('quality');
 let currentPercentage = percentage.value;
+let currentQuality = quality.value;
 let isNewPercentage;
+let isNewQuality;
 let zip;
 
 upload.addEventListener('input', e => {
@@ -118,8 +121,9 @@ download.addEventListener('click', e => {
   const blobs = downloads.map(d => d.href);
 
   isNewPercentage = currentPercentage !== percentage.value;
+  isNewQuality = currentQuality !== quality.value;
 
-  if (isNewPercentage) {
+  if (isNewPercentage || isNewQuality) {
     const files = [...upload.files];
 
     zip = new JSZip();

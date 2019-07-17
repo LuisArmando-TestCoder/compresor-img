@@ -40,7 +40,7 @@ body {
   min-width: 125px;
   border-radius: 25px;
   overflow: hidden;
-  margin: 0 10px;
+  margin: 0 25px;
   box-shadow: 0 0 10px -5px #348AC7;
   font-family: sans-serif;
   display: block;
@@ -50,7 +50,11 @@ body {
   transform: scale(1);
 }
 #images a:hover {
-  transform: scale(1.1);
+  transform: scale(1.025);
+  -webkit-transform: scale(1.025);
+  -moz-transform: scale(1.025);
+  -ms-transform: scale(1.025);
+  -o-transform: scale(1.025);
 }
 
 #download {
@@ -83,14 +87,20 @@ body {
   letter-spacing: 0.2vw;
   background-size: 600px;
 }
-#download[hide=true] {
-  display: none;
+
+[hide=true] {
+  display: none !important;
 }
 
-#percentage {
-  width: 90%;
-  max-width: 200px;
-  display: block;
+.conf {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#percentage,
+#quality {
+  width: 100%;
+  max-width: 400px;
   text-align: center;
   margin: 10px auto;
   padding: 5px;
@@ -103,18 +113,22 @@ body {
   background: #0000;
 }
 
-[for=percentage] {
+[for=percentage],
+[for=quality] {
   color: #fff;
-  width: 60%;
+  padding: 35px;
   font-family: sans-serif;
-  max-width: 200px;
-  display: block;
+  max-width: 420px;
   text-align: center;
   margin: auto;
 }
 
 #upload {
   display: none;
+}
+
+[hide=true] + [for=upload] {
+  margin-top: 250px;
 }
 
 [for=upload] {
