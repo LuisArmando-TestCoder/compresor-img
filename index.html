@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Compress</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="./lib/jszip.min.js"></script>
+    <script src="./lib/jszip.js"></script>
+    <script src="./lib/jszip-utils.js"></script>
+    <script src="./lib/fileSaver.js"></script>
 </head>
 
 <body>
@@ -16,13 +18,14 @@
         Descargar imágenes
     </a>
     <label for="upload">
-        Subir <span>las</span> imágenes
+        Subir <span></span> imágenes
         <input id="upload" type="file" multiple accept=".jpg,.jpeg,.jp2,.png,.svg,.webp">
     </label>
-    <label for="percentage">
+    <label hide="true" for="percentage">
         Porcentaje a reducir
         <input value="50" id="percentage" min="1" max="100" type="number" />
     </label>
+    <i class="author">Creado por LuisArmando-TestCoder</i>
 
     <script src="./js/app.js"></script>
 </body>

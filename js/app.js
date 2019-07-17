@@ -28,7 +28,6 @@ function downloadImage(image, fileName) {
   image = URL.createObjectURL(image);
   a.href = image;
   a.download = fileName;
-  if (isNewPercentage) a.click();
   images.appendChild(a);
   fillAnchor({
     fileName,
@@ -44,10 +43,16 @@ function fillAnchor({
 }) {
   const preview = document.createElement('img');
   const name = document.createElement('i');
+  const anchors = [...images.querySelectorAll('a')];
   preview.src = image;
   name.innerText = fileName.split('-').join(' ');
   a.appendChild(preview);
   a.appendChild(name);
+  if(anchors.length === [...upload.files].length && isNewPercentage) {
+    const names = anchors.map(a => a.querySelector('i').innerText);
+    const blobs = anchors.map(a => a.href);
+    saveZip(names, blobs);
+  }
 }
 
 function all() {
@@ -66,26 +71,61 @@ function all() {
   }
 }
 
+// https://stackoverflow.com/questions/26635627/saving-images-from-url-using-jszip
+function insert(names, blobs) {
+  function getBinaryFrom(url) {
+    return new Promise((resolve, reject) => {
+      JSZipUtils.getBinaryContent(url, (err, data) => {
+        if(err) reject(err);
+        else resolve(data);
+      });
+    });
+  }
+  return {
+    onZip(zip = new JSZip()) {
+      blobs.forEach(
+        (blob, i) => 
+        zip.file(names[i], getBinaryFrom(blob), {binary:true})
+      );
+      return zip.generateAsync({type:'blob'});
+    }
+  }
+}
+
+function saveZip(names, blobs) {
+  insert(names, blobs).onZip()
+  .then(blob => saveAs(blob, 'compressed-images.zip'));
+}
+
 const images = document.getElementById('images');
 const download = document.getElementById('download');
 const upload = document.getElementById('upload');
 const percentage = document.getElementById('percentage');
 let currentPercentage = percentage.value;
 let isNewPercentage;
+let zip;
 
 upload.addEventListener('input', e => {
   images.innerHTML = '';
-  document.querySelector('[for="upload"] span').innerText = 'más';
+  document.querySelector('[for="upload"] span').innerText = 'otras';
   all().show();
   prepareDownload([...e.target.files]);
 });
 
 download.addEventListener('click', e => {
   const downloads = [...images.querySelectorAll('a')];
+  const names = downloads.map(d => d.querySelector('i').innerText);
+  const blobs = downloads.map(d => d.href);
+
   isNewPercentage = currentPercentage !== percentage.value;
+
   if (isNewPercentage) {
     const files = [...upload.files];
+
+    zip = new JSZip();
     images.innerHTML = '';
-    prepareDownload(files);
-  } else downloads.forEach(d => d.click());
+    isNewPercentage = percentage.value;
+    
+    prepareDownload(files); // when this is finished, saveZip
+  } else saveZip(names, blobs);
 });

@@ -7,7 +7,17 @@ body {
   background: #101010;
 }
 
+.author {
+  text-align: center;
+  display: block;
+  color: #e5e5e544;
+  margin-top: 50px;
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
 #images {
+  overflow: auto;
   background: #fff;
   padding: 15vh 0 5vh;
   display: flex;
@@ -27,13 +37,13 @@ body {
   text-align: center;
 }
 #images a {
+  min-width: 125px;
   border-radius: 25px;
   overflow: hidden;
   margin: 0 10px;
   box-shadow: 0 0 10px -5px #348AC7;
   font-family: sans-serif;
   display: block;
-  width: 150px;
   background: -webkit-linear-gradient(left, #eb3349, #f45c43);
   color: #fff;
   transition: 0.25s;
